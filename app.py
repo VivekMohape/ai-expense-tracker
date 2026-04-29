@@ -8,7 +8,7 @@ from db import init_db, save_data
 from model import prepare_monthly_data, train_model, predict_next_month
 
 st.set_page_config(layout="wide")
-st.title("AI Expense Intelligence Dashboard")
+st.title("AI Expense Dashboard")
 
 # Data Source Selection
 data_source = st.radio(
