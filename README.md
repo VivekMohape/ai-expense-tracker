@@ -222,7 +222,27 @@ Future versions can replace this with more advanced models.
 ### Monthly Trend and Prediction
 <img src="screenshots/trend.png" alt="Monthly Trend with Prediction" width="800"/>
 
+---
+## AI Insights
 
+The system generates intelligent insights based on historical spending patterns. These insights help users understand their financial behavior beyond raw visualizations.
+
+### Sample Insights
+
+- Highest spending category: Food
+- Most expensive month: March
+- Recurring fixed costs detected: Rent, Subscriptions
+- Increasing trend observed in discretionary spending
+- Predicted increase in next month's expenses
+
+### Insight Types
+
+- Category dominance (where most money is spent)
+- Monthly trend analysis (spending increase/decrease)
+- Recurring expense detection
+- Forecast-based alerts (expected rise or drop)
+
+---
 
 ## Key Insight
 
