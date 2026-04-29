@@ -205,6 +205,23 @@ Future versions can replace this with more advanced models.
 * Integrate real bank APIs for live data
 
 ---
+## Evaluation
+
+- Classification quality evaluated via manual inspection
+- Prediction evaluated using trend consistency (baseline regression)
+- Future improvement: add MAE / RMSE metrics
+---
+## Screenshots
+
+### Upload and Data Preview
+<img src="screenshots/upload.png" alt="Upload and Data Preview" width="800"/>
+
+### Category Distribution
+<img src="screenshots/pie.png" alt="Category Distribution Pie Chart" width="800"/>
+
+### Monthly Trend and Prediction
+<img src="screenshots/trend.png" alt="Monthly Trend with Prediction" width="800"/>
+
 
 
 ## Key Insight
