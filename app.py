@@ -123,5 +123,5 @@ if df is not None and run_analysis:
     if insights:
         for i, insight in enumerate(insights, 1):
             st.write(f"{i}. {insight}")
-    else
+    else:
         st.write("No insights generated.")
