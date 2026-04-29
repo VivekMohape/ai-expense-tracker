@@ -6,18 +6,19 @@ from preprocess import clean_data
 from llm_classifier import classify_transaction
 from db import init_db, save_data
 from model import prepare_monthly_data, train_model, predict_next_month
+from insights import generate_insights
 
 st.set_page_config(layout="wide")
-st.title("AI Expense Dashboard")
+st.title("AI Expense Intelligence Dashboard")
 
-# Data Source Selection
+
 data_source = st.radio(
     "Select Data Source",
     ["Upload File", "Use Demo Dataset"]
 )
 
 df = None
-# Upload Mode
+
 
 if data_source == "Upload File":
     uploaded_file = st.file_uploader(
@@ -36,11 +37,11 @@ if data_source == "Use Demo Dataset":
     try:
         df = pd.read_excel("sample_data/1yr_transactions.xlsx")
         st.info("Loaded demo dataset")
-    except Exception as e:
-        st.error("Demo dataset not found. Please ensure file exists in sample_data folder.")
+    except Exception:
+        st.error("Demo dataset not found. Ensure file exists in sample_data folder.")
         st.stop()
 
-# Run Analysis Button
+
 run_analysis = st.button("Run Analysis")
 
 if df is not None and run_analysis:
@@ -49,7 +50,6 @@ if df is not None and run_analysis:
 
     st.subheader("Cleaned Data Preview")
     st.dataframe(df.head())
-
     @st.cache_data
     def classify_cached(desc):
         return classify_transaction(desc)
@@ -59,24 +59,28 @@ if df is not None and run_analysis:
 
     st.success("Classification completed")
 
+
     init_db()
     save_data(df)
 
-    # Filter expenses
     df_exp = df[df["amount"] < 0].copy()
-    df_exp["amount"] = df_exp["amount"].abs()
 
     if df_exp.empty:
-        st.warning("No expense transactions found. Showing full dataset instead.")
+        st.warning("No expense transactions found. Using full dataset instead.")
         df_exp = df.copy()
-        df_exp["amount"] = df_exp["amount"].abs()
 
-    # Category Distribution
+    df_exp["amount"] = df_exp["amount"].abs()
+
     st.subheader("Category Distribution")
-    fig_pie = px.pie(df_exp, names="category", values="amount")
+
+    fig_pie = px.pie(
+        df_exp,
+        names="category",
+        values="amount"
+    )
+
     st.plotly_chart(fig_pie, use_container_width=True)
 
-    # Monthly Trend
     monthly = prepare_monthly_data(df)
 
     if len(monthly) < 2:
@@ -111,3 +115,13 @@ if df is not None and run_analysis:
         "Predicted Expense (Next Month)",
         f"{abs(prediction):.2f}"
     )
+
+    st.subheader("AI Insights")
+
+    insights = generate_insights(df, monthly, prediction)
+
+    if insights:
+        for i, insight in enumerate(insights, 1):
+            st.write(f"{i}. {insight}")
+    else
+        st.write("No insights generated.")
