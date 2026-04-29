@@ -7,10 +7,14 @@ This project is an end-to-end intelligent expense analysis system that combines 
 The system is designed to simulate a real-world fintech pipeline where transaction descriptions are unstructured and require semantic understanding before numerical modeling can be applied.
 
 ---
+## Live Demo
 
+- Application: https://ai-expense--tracker.streamlit.app/
+- Repository: https://github.com/VivekMohape/ai-expense-tracker/tree/main
+---
 ## Key Features
 
-* Upload bank transaction data (CSV or Excel)
+* Upload bank transaction data (Excel)
 * Explore a built-in demo dataset with realistic one-year financial patterns
 * Automatic transaction classification using a hybrid rule-based and LLM approach
 * Monthly expense aggregation and trend analysis
