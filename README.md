@@ -251,3 +251,56 @@ This project demonstrates a hybrid AI system:
 * LLMs for semantic understanding
 * Traditional ML for numerical prediction
 ---
+## Production Architecture 
+
+To scale this system into a production-grade application, the architecture would be redesigned by separating the frontend, backend, and processing layers.
+
+Frontend (React / Web UI)
+        ↓
+FastAPI Backend (REST APIs)
+        ↓
+Service Layer
+    ├── Preprocessing Service
+    ├── Classification Service (LLM)
+    ├── Prediction Service (ML)
+    └── Insights Service
+        ↓
+Database Layer (BigQuery / MongoDB)
+
+The Streamlit application would be replaced or complemented by a FastAPI backend exposing REST endpoints.
+
+FastAPI Flow -->
+User uploads file → /upload-transactions 
+Backend: -->
+Cleans data 
+Stores raw transactions -->
+/classify-transactions: 
+Runs rule-based + LLM classification -->
+/analytics/monthly:
+Returns aggregated data -->
+/prediction:
+Returns forecast -->
+/insights:
+Returns generated insights 
+
+## Security and Privacy Enhancements
+# PII Masking
+Mask account numbers and identifiers
+Tokenization or hashing before storage
+# Authentication
+JWT-based authentication
+Role-based access control
+# Secure LLM Usage
+Replace external APIs with local LLM
+Prevent sensitive data leakage
+
+# Guardrails and Validation
+Restrict output categories to predefined set
+Validate LLM responses
+Add fallback rules for incorrect outputs
+
+# Deployment Strategy
+Backend: FastAPI (Dockerized)
+Frontend: React / Next.js
+Database: BigQuery or MongoDB
+Orchestration: Kubernetes / Cloud Run
