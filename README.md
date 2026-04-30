@@ -283,23 +283,23 @@ Returns forecast -->
 /insights:
 Returns generated insights 
 
-## Security and Privacy Enhancements
-# PII Masking
+# Security and Privacy Enhancements
+## PII Masking
 Mask account numbers and identifiers
 Tokenization or hashing before storage
-# Authentication
+## Authentication
 JWT-based authentication
 Role-based access control
-# Secure LLM Usage
+## Secure LLM Usage
 Replace external APIs with local LLM
 Prevent sensitive data leakage
 
-# Guardrails and Validation
+## Guardrails and Validation
 Restrict output categories to predefined set
 Validate LLM responses
 Add fallback rules for incorrect outputs
 
-# Deployment Strategy
+## Deployment Strategy
 Backend: FastAPI (Dockerized)
 Frontend: React / Next.js
 Database: BigQuery or MongoDB
